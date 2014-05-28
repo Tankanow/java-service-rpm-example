@@ -1,0 +1,7 @@
+# This is the configuration for /etc/init.d/java-service-rpm-example
+#
+
+# lib
+SERVER_LIB='/usr/local/technology/tankthink/lib/java-service-rpm-example-0.0.1.jar'
+# cfg
+SERVER_YAML='/usr/local/technology/tankthink/cfg/java-service-rpm-example.yml'

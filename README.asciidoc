@@ -1,0 +1,34 @@
+= Java Service RPM Example =
+Adam Tankanow <adam.tankanow@gmail.com>
+
+http://tankthink.technology
+
+== Why? ==
+How many of us are building/striving towards http://martinfowler.com/articles/microservices.html[microservices]? How many of us are building these applications in Java using one of the beautiful stand-alone service stacks like https://dropwizard.github.io/dropwizard/[Dropwizard] or http://projects.spring.io/spring-boot/[Spring Boot]? And lastly how many of us are deploying these services as jars to Linux machines using a combination of crontabs and/or manually written scripts to start them up?
+
+We should be packaging our Java Services _as Linux_ `services`. Furthermore, we should be installing them using standard Linux distribution tools like `RPMs`.
+
+You can use this project as a template to build up an RPM from an Java Microservice with an Embedded Container.
+
+== How? ==
+NOTE: Prerequisites: Install Vagrant and VirtualBox if you don't already have them: http://docs.vagrantup.com/v2/getting-started/index.html[Vagrant Docs].
+
+. `mvn clean package`
+
+There will now be an RPM in the target directory somewhere nearby:
+
+----------------------------------------------------------------------
+target
+└── rpm
+    └── java-service-rpm-example
+        └── RPMS
+            └── noarch
+                └── java-service-rpm-example-0.0.1-1.noarch.rpm
+----------------------------------------------------------------------
+
+. `cp target/rpm/java-service-rpm-example/RPMS/noarch/java-service-rpm-example-0.1.1-1.noarch.rpm vagrant/`
+. `cd vagrant`
+. `vagrant up`
+. `curl http://localhost:9080/java-service-rpm-example/version`
+
+And voila! There you have a Java Microservice running as a daemon under Linux installed via RPM!
